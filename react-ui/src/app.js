@@ -32,16 +32,18 @@ class App extends Component {
              Einstein Vision Demo
              <div className="detail">of the General Image Classifier</div>
           </h1>
-		  <h2 className="title">
-			ModelID=Damage Inspection
-		  
-		  </h2>
-        </div>
-          <select id="modelOptions" >
-            <option value="model1">Model 1</option>
-            <option value="model2">Model 2</option>
-            <option value="model3">Model 3</option>
-          </select>
+          <h2 className="title">
+          ModelID=Damage Inspection
+          
+          </h2>
+      
+          <form>
+            <label>
+              Name:
+              <input type="text" name="name" />
+            </label>
+          </form>
+      </div>
         <div className={classNames(
           "app",
           file != null ? "app-with-image" : null)}>
