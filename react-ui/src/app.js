@@ -24,6 +24,7 @@ class App extends Component {
     const response = this.state.uploadResponse;
     const predictions = (response && response.probabilities) || [];
 
+
     return (
       <div>
         <div className="title">
@@ -36,6 +37,11 @@ class App extends Component {
 		  
 		  </h2>
         </div>
+          <select id="modelOptions" >
+            <option value="model1">Model 1</option>
+            <option value="model2">Model 2</option>
+            <option value="model3">Model 3</option>
+          </select>
         <div className={classNames(
           "app",
           file != null ? "app-with-image" : null)}>
@@ -113,6 +119,7 @@ class App extends Component {
       acceptedFiles.forEach((file)=> {
         // Backend expects 'file' reference
         req.attach('file', file, file.name);
+        //req.attacth('modelId', /*get model id */ this.selectedValue);
       });
       req.end((err,res) => {
         this.setState({ isProcessing: false });
