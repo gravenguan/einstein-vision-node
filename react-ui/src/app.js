@@ -31,12 +31,7 @@ class App extends Component {
           <h1 className="intro">
              Einstein Vision Demo
              <div className="detail">of the General Image Classifier</div>
-          </h1>
-          <h2 className="title">
-          ModelID=Damage Inspection
-          
-          </h2>
-      
+          </h1>      
           <form>
             <label>
               Name:
@@ -118,6 +113,7 @@ class App extends Component {
       });
 
       var req = superagent.post('/file-upload');
+      req.model1="12345";
       acceptedFiles.forEach((file)=> {
         // Backend expects 'file' reference
         req.attach('file', file, file.name);
