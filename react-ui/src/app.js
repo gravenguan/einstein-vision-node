@@ -15,7 +15,7 @@ class App extends Component {
     files: [],
     isProcessing: false,
     uploadError: null,
-    uploadResponse: null,
+    uploadResponse: null
   }
 
  /* handleChange(event) {
