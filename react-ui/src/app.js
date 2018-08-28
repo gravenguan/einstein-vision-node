@@ -10,13 +10,23 @@ import UploadTarget from './upload-target';
 
 class App extends Component {
 
+
   state = {
     files: [],
     isProcessing: false,
     uploadError: null,
-    uploadResponse: null
+    uploadResponse: null,
   }
 
+ /* handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+*/
   render() {
     const file = this.state.files[0];
     const uploadError = this.state.uploadError;
@@ -32,11 +42,12 @@ class App extends Component {
              Einstein Vision Demo
              <div className="detail">of the General Image Classifier</div>
           </h1>      
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <label>
-              Name:
-              <input type="text" name="name" />
+              CUSTOM_MODEL_ID:
+              <input type="text" name="CUSTOM_MODEL_ID" />
             </label>
+            <input type="submit" value="Submit"/>
           </form>
       </div>
         <div className={classNames(
@@ -109,11 +120,10 @@ class App extends Component {
         isProcessing: true,
         files: acceptedFiles,
         uploadError: null,
-        uploadResponse: null
+        uploadResponse: null,
       });
 
       var req = superagent.post('/file-upload');
-      req.model1="12345";
       acceptedFiles.forEach((file)=> {
         // Backend expects 'file' reference
         req.attach('file', file, file.name);
