@@ -42,7 +42,7 @@ class App extends Component {
              Einstein Vision Demo
              <div className="detail">of the General Image Classifier</div>
           </h1>      
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <label>
               CUSTOM_MODEL_ID:
               <input type="text" name="CUSTOM_MODEL_ID" />
@@ -120,7 +120,7 @@ class App extends Component {
         isProcessing: true,
         files: acceptedFiles,
         uploadError: null,
-        uploadResponse: null,
+        uploadResponse: null
       });
 
       var req = superagent.post('/file-upload');
