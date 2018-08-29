@@ -42,7 +42,7 @@ class App extends Component {
              Einstein Vision Demo
              <div className="detail">of the General Image Classifier</div>
           </h1>      
-          <form>
+          <form action="/file-upload">
             <label>
               CUSTOM_MODEL_ID:
               <input type="text" name="CUSTOM_MODEL_ID" />
