@@ -15,18 +15,50 @@ class App extends Component {
     files: [],
     isProcessing: false,
     uploadError: null,
-    uploadResponse: null
+    uploadResponse: null,
+    modelParams: null
   }
 
  /* handleChange(event) {
     this.setState({value: event.target.value});
   }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
 */
+handleSubmit = (error, value)=>{
+
+  if (error) {
+      this.setState({
+          modelParams: null
+      });
+  }else {
+
+      var req = superagent.post('/model');
+
+      req.field("CUSTOM_MODEL_ID", value.CUSTOM_MODEL_ID);
+      // req.field("EINSTEIN_VISION_ACCOUNT_ID", value.EINSTEIN_VISION_ACCOUNT_ID);
+      // req.field("EINSTEIN_VISION_PRIVATE_KEY", value.EINSTEIN_VISION_PRIVATE_KEY);
+
+      console.log('modelParams',value);
+
+      req.end((err,res) => {
+          this.setState({ isProcessing: false });
+          if (err) {
+          console.log('file-upload error', err);
+          //this.setState({ uploadError: err.message });
+          return;
+          }
+          console.log('file-upload response====>', res);
+          value.token = res.text;
+
+          this.setState({
+              modelParams: value
+          });
+          //this.setState({ uploadResponse: JSON.parse(res.text) });
+      });
+
+  }
+
+};
+
   render() {
     const file = this.state.files[0];
     const uploadError = this.state.uploadError;
@@ -128,6 +160,7 @@ class App extends Component {
         // Backend expects 'file' reference
         req.attach('file', file, file.name);
         //req.attacth('modelId', /*get model id */ this.selectedValue);
+        req.field(modelParams);
       });
       req.end((err,res) => {
         this.setState({ isProcessing: false });
