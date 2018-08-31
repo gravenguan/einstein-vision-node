@@ -59,6 +59,7 @@ handleSubmit = (error, value)=>{
 
 };
 
+
   render() {
     const file = this.state.files[0];
     const uploadError = this.state.uploadError;
@@ -74,7 +75,7 @@ handleSubmit = (error, value)=>{
              Einstein Vision Demo
              <div className="detail">of the General Image Classifier</div>
           </h1>      
-          <form action="/file-upload">
+          <form onSubmit={this.handleSubmit}>
             <label>
               CUSTOM_MODEL_ID:
               <input type="text" name="CUSTOM_MODEL_ID" />
